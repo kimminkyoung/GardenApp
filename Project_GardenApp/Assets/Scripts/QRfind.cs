@@ -9,6 +9,8 @@ public class QRfind : MonoBehaviour
     TrackableBehaviour insTrack;
     TrackableBehaviour.Status previous;
 
+    public GameObject targetOBJ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,11 @@ public class QRfind : MonoBehaviour
     public void TrackLost()
     {
         print("my custom track lost!");
+    }
+
+    public void SizeCalculation()
+    {
+
     }
 }
 
