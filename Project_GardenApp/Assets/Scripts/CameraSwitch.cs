@@ -7,9 +7,15 @@ public class CameraSwitch : MonoBehaviour
     public GameObject GameCamera;
     public GameObject ArCamera;
 
-    public void Switch()
+    public void SwitchToAR()
     {
         GameCamera.SetActive(false);
         ArCamera.SetActive(true);
+    }
+
+    public void SwitchToGame()
+    {
+        GameCamera.SetActive(true);
+        ArCamera.SetActive(false);
     }
 }

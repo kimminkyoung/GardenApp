@@ -1060,7 +1060,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 622390631}
-        m_MethodName: Switch
+        m_MethodName: SwitchToAR
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1386,6 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2a7432da2c4bb489f251f6a292bb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ins_switch: {fileID: 622390631}
   alarmUI: {fileID: 110135294}
   targetOBJ: {fileID: 599147072}
   targetOBJ2: {fileID: 2145004559}

@@ -11,6 +11,7 @@ public class QRfind : MonoBehaviour
     TrackableBehaviour insTrack;
     TrackableBehaviour.Status previous;
 
+    public CameraSwitch ins_switch;
     public GameObject alarmUI;
     public GameObject targetOBJ;
     public GameObject targetOBJ2;
@@ -93,6 +94,8 @@ public class QRfind : MonoBehaviour
             byte[] bytes = captureTexture.EncodeToPNG();
             System.IO.File.WriteAllBytes(Path.Combine("D:/unity2020/GardenApp/Project_GardenApp/Assets/SavePhoto", "capture.png"), bytes);
         }
+
+        ins_switch.SwitchToGame();
     }
 }
 
