@@ -11,6 +11,7 @@ public class QRfind : MonoBehaviour
     TrackableBehaviour insTrack;
     TrackableBehaviour.Status previous;
 
+    public GameObject alarmUI;
     public GameObject targetOBJ;
     public GameObject targetOBJ2;
     public GameObject test;
@@ -46,13 +47,14 @@ public class QRfind : MonoBehaviour
         SizeCalculation();
         if (!checkCapture)
         {
-            StartCoroutine(Capture());
+            alarmUI.SetActive(true);
             checkCapture = true;
         }
     }
     public void TrackLost()
     {
         print("my custom track lost!");
+        alarmUI.SetActive(false);
         checkCapture = false;
     }
 
@@ -66,6 +68,11 @@ public class QRfind : MonoBehaviour
         Vector3 pos2 = targetOBJ2.GetComponent<Transform>().position;
 
         test.transform.position = (pos1 + pos2) / 2;
+    }
+
+    public void StartCapturing()
+    {
+        StartCoroutine(Capture());
     }
 
     IEnumerator Capture()
