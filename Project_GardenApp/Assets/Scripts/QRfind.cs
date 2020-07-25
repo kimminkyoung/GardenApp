@@ -18,6 +18,8 @@ public class QRfind : MonoBehaviour
     public GameObject test;
 
     bool checkCapture = false;
+    Vector2 captureOrigin;
+    Vector2 captureArea;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +71,13 @@ public class QRfind : MonoBehaviour
         Vector3 pos2 = targetOBJ2.GetComponent<Transform>().position;
 
         test.transform.position = (pos1 + pos2) / 2;
+
+        Vector2 screenPos1 = Camera.main.WorldToScreenPoint(pos1);
+        Vector2 screenPos2 = Camera.main.WorldToScreenPoint(pos2);
+
+        Vector2 captureSize = new Vector2(screenPos2.x - screenPos1.x, screenPos2.y - screenPos1.y);
+        captureOrigin = screenPos1;
+        captureArea = captureSize;
     }
 
     public void StartCapturing()
@@ -79,10 +88,11 @@ public class QRfind : MonoBehaviour
     IEnumerator Capture()
     {
         yield return new WaitForEndOfFrame();
+        SizeCalculation();
 
-        Vector2 captureArea = new Vector2(1920, 1080);
+        //Vector2 captureArea = new Vector2(1920, 1080);
         Texture2D captureTexture = new Texture2D((int)captureArea.x, (int)captureArea.y, TextureFormat.RGB24, false);
-        captureTexture.ReadPixels(new Rect(0, 0, captureTexture.width, captureTexture.height), 0, 0);
+        captureTexture.ReadPixels(new Rect(captureOrigin.x, captureOrigin.y, captureTexture.width, captureTexture.height), 0, 0);
 
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
