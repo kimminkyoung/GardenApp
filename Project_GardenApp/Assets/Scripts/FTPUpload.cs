@@ -7,7 +7,8 @@ using System.IO;
 public class FTPUpload : MonoBehaviour
 {
     public Texture2D image;
-    public GameObject[] plants;
+    public Texture2D[] plantTextures;
+    public GameObject[] plantObjects;
 
     private void OnEnable()
     {
@@ -25,7 +26,11 @@ public class FTPUpload : MonoBehaviour
 
     public void GetObjectsTexture()
     {
-
+        plantTextures = new Texture2D[plantObjects.Length];
+        for (int i = 0; i < plantObjects.Length; i++)
+        {
+            //plantTextures[i] = plantObjects[i].GetComponent<>
+        }
     }
 
     public void FTPFileUpload()
