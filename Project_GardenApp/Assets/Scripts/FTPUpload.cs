@@ -7,16 +7,25 @@ using System.IO;
 public class FTPUpload : MonoBehaviour
 {
     public Texture2D image;
+    public GameObject[] plants;
+
+    private void OnEnable()
+    {
+        print("ftp upload script is opened");
+    }
     // Start is called before the first frame update
     void Start()
     {
-        FTPFileUpload();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public void GetObjectsTexture()
+    {
+
     }
 
     public void FTPFileUpload()
@@ -25,21 +34,20 @@ public class FTPUpload : MonoBehaviour
         string id = "bebeamplants";
         string pwd = "bebeam2020";
 
-        FileInfo myInfo = null;
+        //FileInfo myInfo = null;
 
-        FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);
-        request.Method = WebRequestMethods.Ftp.UploadFile;
+        FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);//웹서버로 올리기 위한 request생성
+        request.Method = WebRequestMethods.Ftp.UploadFile;//
         request.Credentials = new NetworkCredential(id, pwd);
         request.UseBinary = true;
-        Stream ftpStream = request.GetRequestStream();
+
+        Stream ftpStream = request.GetRequestStream();//시스템 입출력에서 바이트 읽기쓰기 클래스 생성
 
         byte[] data = new byte[image.EncodeToPNG().Length];
         data = image.EncodeToPNG();
 
-        ftpStream.Write(data, 0, data.Length);
+        ftpStream.Write(data, 0, data.Length);//생성된 스트림으로 데이터 쓰기
         ftpStream.Close();
-
-       // int writeLength = FileStream.re
 
     }
 }
