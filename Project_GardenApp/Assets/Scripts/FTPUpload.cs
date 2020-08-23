@@ -36,6 +36,7 @@ public class FTPUpload : MonoBehaviour
     public void FTPFileUpload()
     {
         string ftpPath = "ftp://bebeamplants.cafe24.com/myform/myimage.png";
+        //개인별로 구분되는 이름필요, 폴더생성 필요
         string id = "bebeamplants";
         string pwd = "bebeam2020";
 
