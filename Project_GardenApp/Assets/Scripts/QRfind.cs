@@ -12,10 +12,12 @@ public class QRfind : MonoBehaviour
     TrackableBehaviour.Status previous;
 
     public CameraSwitch ins_switch;
+
     public GameObject alarmUI;
     public GameObject targetOBJ;
     public GameObject targetOBJ2;
     public GameObject test;
+    public string textureName;
 
     bool checkCapture = false;
     Vector2 captureOrigin;
@@ -32,6 +34,11 @@ public class QRfind : MonoBehaviour
     {
         CheckStatus(previous);
         previous = insTrack.CurrentStatus;
+    }
+
+    public void CheckChangableObject(string plantName)
+    {
+        textureName = plantName;
     }
 
     public void CheckStatus(TrackableBehaviour.Status previousStatus)
@@ -97,15 +104,19 @@ public class QRfind : MonoBehaviour
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
             byte[] bytes = captureTexture.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Path.Combine(Application.persistentDataPath, "capture.png"), bytes);
+            System.IO.File.WriteAllBytes(Path.Combine(Application.persistentDataPath, textureName + ".png"), bytes);
+
+            ins_switch.SwitchToGame(textureName, Application.persistentDataPath);
         }
         else
         {
             byte[] bytes = captureTexture.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Path.Combine("D:/unity2020/GardenApp/Project_GardenApp/Assets/SavePhoto", "capture.png"), bytes);
+            System.IO.File.WriteAllBytes(Path.Combine("D:/unity2020/GardenApp/Project_GardenApp/Assets/SavePhoto", textureName + ".png"), bytes);
+
+            ins_switch.SwitchToGame(textureName, "D:/unity2020/GardenApp/Project_GardenApp/Assets/SavePhoto");
         }
 
-        ins_switch.SwitchToGame();
+        textureName = null;
     }
 }
 
