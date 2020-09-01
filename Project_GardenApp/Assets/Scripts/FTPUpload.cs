@@ -35,17 +35,60 @@ public class FTPUpload : MonoBehaviour
 
     public void FTPFileUpload(string name, Texture2D[] textures)
     {
+        string ftpPathFolder = "ftp://bebeamplants.cafe24.com/" + name + "Folder/";
+        string id = "bebeamplants";
+        string pwd = "bebeam2020";
+
+        FtpWebRequest requestFolder = (FtpWebRequest)WebRequest.Create(ftpPathFolder);//웹서버로 올리기 위한 request생성
+        requestFolder.UseBinary = true;
+        requestFolder.UsePassive = true;
+        requestFolder.Method = WebRequestMethods.Ftp.MakeDirectory;
+        requestFolder.Credentials = new NetworkCredential(id, pwd);
+
+        FtpWebResponse responseFolder = (FtpWebResponse)requestFolder.GetResponse();
+        responseFolder.Close();
+        //requestFolder.UsePassive = true;
+        //requestFolder.UseBinary = true;
+
+        /*
+        try
+        {
+            using(var resp = (FtpWebResponse)requestFolder.GetResponse())
+            {
+                resp.Close();
+            }
+        }catch(WebException e)
+        {
+            print("get error (^0-) ㅗ");
+            Debug.LogError(e.Message);
+        }*/
+
+        //var resp = (FtpWebResponse)requestFolder.GetResponse();
+        //resp.Close();
+
+        //Stream ftpStreamFolder = requestFolder.GetRequestStream();
+        //ftpStreamFolder.Close();
+
+
+
+        /*
         for (int i = 0; i < textures.Length; i++)
         {
-            string ftpPath = "ftp://bebeamplants.cafe24.com/myform/" + name + "Folder/" + name + i + ".png";
-            //개인별로 구분되는 이름필요, 폴더생성 필요
+            // 1. 폴더생성
+            //string ftpPath = "ftp://bebeamplants.cafe24.com/myform/" + name + "Folder/" + name + i + ".png";
+            string ftpPathFolder = "ftp://bebeamplants.cafe24.com/myform/" + name + "Folder/";
             string id = "bebeamplants";
             string pwd = "bebeam2020";
 
-            //FileInfo myInfo = null;
+            FtpWebRequest requestFolder = (FtpWebRequest)WebRequest.Create(ftpPathFolder);//웹서버로 올리기 위한 request생성
+            requestFolder.Credentials = new NetworkCredential(id, pwd);
+            requestFolder.Method = WebRequestMethods.Ftp.MakeDirectory;
 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);//웹서버로 올리기 위한 request생성
-            request.Method = WebRequestMethods.Ftp.UploadFile;//
+            Stream ftpStreamFolder = requestFolder.GetRequestStream();
+            ftpStreamFolder.Close();
+
+            /
+            request.Method = WebRequestMethods.Ftp.UploadFile;//업로드
             request.Credentials = new NetworkCredential(id, pwd);
             request.UseBinary = true;
 
@@ -57,7 +100,8 @@ public class FTPUpload : MonoBehaviour
 
             ftpStream.Write(data, 0, data.Length);//생성된 스트림으로 데이터 쓰기
             ftpStream.Close();
-        }
+            /
+        }*/
 
         print("Upload Complet");
     }
