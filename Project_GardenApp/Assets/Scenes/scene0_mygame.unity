@@ -1425,6 +1425,7 @@ GameObject:
   - component: {fileID: 507595557}
   - component: {fileID: 507595556}
   - component: {fileID: 507595555}
+  - component: {fileID: 507595559}
   m_Layer: 5
   m_Name: Button_LookAround
   m_TagString: Untagged
@@ -1521,6 +1522,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 507595559}
+        m_MethodName: FTPGetList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &507595557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,6 +1570,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507595553}
   m_CullTransparentMesh: 0
+--- !u!114 &507595559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507595553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d051fcdb72d4d2479be122cda00ef3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &588146900
 GameObject:
   m_ObjectHideFlags: 0
